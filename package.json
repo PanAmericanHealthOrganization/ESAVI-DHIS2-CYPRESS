@@ -1,0 +1,24 @@
+{
+  "name": "dhis2-test-fun",
+  "version": "1.0.0",
+  "description": "Proyecto de prueba para DHIS2 basado en POM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cypress open",
+    "run:dashboards": "npx cypress run --record --key aa5446eb-26dd-412a-bddc-6fe6a7ace4bf",
+    "run:sorry": "cy2 run --record --key aa5446eb-26dd-412a-bddc-6fe6a7ace4bf --parallel --ci-build-id `date +%s`"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "cypress-cloud": "^1.9.1",
+    "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.3.1"
+  }
+}
