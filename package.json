@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cypress open",
+    "start": "cypress open --env VERSION=local",
+    "start:dev": "cypress open --env VERSION=dev",
+    "start:test": "cypress open --env VERSION=test",
+    "start:test38": "cypress open --env VERSION=test38",
     "run:dashboards": "npx cypress run --record --key aa5446eb-26dd-412a-bddc-6fe6a7ace4bf",
     "run:sorry": "cy2 run --record --key aa5446eb-26dd-412a-bddc-6fe6a7ace4bf --parallel --ci-build-id `date +%s`"
   },
