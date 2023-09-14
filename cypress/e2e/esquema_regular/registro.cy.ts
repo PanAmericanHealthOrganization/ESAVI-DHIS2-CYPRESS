@@ -1,57 +1,29 @@
 import { loginPage } from "../../pages/Login";
-import { registroEsquemaRegularPage } from "../../pages/esquema_regular/RegistroERPage";
+import { registroModuloCentinela } from "../../pages/centinela/RegistroModuloCentinelaPage";
+import { CentinelaPatientBuilder } from "../../pages/interfaces/CentinelaPatient";
 
 
 describe('Validaciones de registro de Usuario en Esquema Regular', function () {
     //
     beforeEach(function () {
         cy.session("login", () => {
-            loginPage.login('admin', 'Userdhis2.');
+            let user = (Cypress.env('users') || []).find((user: any) => user.role === "admin");
+            loginPage.login(user.username, user.password);
         })
     })
 
     //
-    it.skip('Validar formulario', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.seleccionarTipoIdentificacion('CEDULA IDENTIDAD');
-        registroEsquemaRegularPage.setIdentificacion('0102486024');
-        // cy.xpath(registroEsquemaRegularPage.botonBusqueda).should('be.visible');
-    });
+    it('Validar formulario caso 1', () => {
+        registroModuloCentinela.visit();
+        const centinela = new CentinelaPatientBuilder().withApellidos('Gonzalez')
+            .withNombres('Juan')
+            .withNumeroIdentidad('123456789').withFechaNacimiento('01-01-1990')
+            .withSexo('Masculino').withMunicipio('Municipio')
+            .withDireccion('Direccion').withCorreoElectronico('gqctssnep3vo@example.com')
+            .withNumeroTelefono('123456789')
+            .build();
 
-    it('Nombres -> () -> no permite vacios', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setNombres(' ');
-        cy.get('span:contains("El tamaño del nombre no es correcto")').should('be.visible');
-    });
-
-    it('APELLIDOS -> Nombre no debe tener números', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setNombres('ROLANDO1');
-        cy.get('span:contains("Sólo se permiten letras en el campo nombre")').should('be.visible');
-
-    });
-
-    it('APELLIDOS -> Nombre no debe tener números', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setNombres('ROLANDO1');
-        cy.get('span:contains("Sólo se permiten letras en el campo nombre")').should('be.visible');
-
-    });
-
-    it.skip('APELLIDOS -> CASIGÑA PARRA', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setApellidos('ROLANDO CASIGNA');
-        cy.get('span:contains("Sólo se permiten letras en el campo nombre")').should('be.not.visible');
-    });
-    it.skip('APELLIDOS -> APELLIDO1, Apellido con número', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setNombres('ROLANDO CASIGNA2');
-        cy.get('span:contains("Sólo se permiten letras en el campo apellido")').should('be.visible');
-
-    });
-    it.skip('Validar Nombres', () => {
-        registroEsquemaRegularPage.visit();
-        registroEsquemaRegularPage.setNombres('J');
+        registroModuloCentinela.fullForm(centinela);
     });
 
 

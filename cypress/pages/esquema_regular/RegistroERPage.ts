@@ -39,7 +39,7 @@ class RegistroEsquemaRegularPage {
     public visit() {
         cy.visit('/dhis-web-tracker-capture/index.html#/');
         cy.xpath('//*[@id="searchIcon"]').click()
-        cy.xpath('//*[@id="searchField"]').should('be.visible').type('Huaca (000242)');
+        cy.xpath('//*[@id="searchField"]').should('be.visible').type('Demo');
         cy.xpath('//*[@id="searchSpan"]/input[2]').should('be.visible').click();
         // 
 
@@ -51,7 +51,7 @@ class RegistroEsquemaRegularPage {
 
         // clic en botón para listado de programas
         cy.xpath('//*[@id="mainPage"]/div[2]/div[2]/div[1]/div/a/span[3]').should('be.visible').click();
-        cy.xpath('//*[@id="mainPage"]/div[2]/div[2]/div[1]/div/div/div/input').should('be.visible').type('ESQUEMA REGULAR', { timeout: 1000 });
+        cy.xpath('//*[@id="mainPage"]/div[2]/div[2]/div[1]/div/div/div/input').should('be.visible').type('Módulo Centinela', { timeout: 1000 });
         cy.xpath('//*[@id="ui-select-choices-row-1-0"]/div').should('be.visible').click();
 
         // BOTON DE REGISTRO
@@ -61,12 +61,6 @@ class RegistroEsquemaRegularPage {
 
     // solo es valido con los campos predeterminados.
     public isFormColpleted() {
-
-    }
-
-    public seleccionarTipoIdentificacion(tipo: string) {
-        cy.xpath('//*[@id="mainPage"]/div[2]/div[3]/div/div/div[1]/form[1]/div/div[2]/div[2]/d2-custom-registration-form/div/table/tbody/tr[1]/td[2]/span[1]/div[1]/a/span[3]/b').click();
-        cy.xpath('//*[@id="mainPage"]/div[2]/div[3]/div/div/div[1]/form[1]/div/div[2]/div[2]/d2-custom-registration-form/div/table/tbody/tr[1]/td[2]/span[1]/div[1]/div/div/input').type(`${tipo}{enter}`);
 
     }
 

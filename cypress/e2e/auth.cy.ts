@@ -14,10 +14,8 @@ describe('Auth, se realizan las validaciones del campo de autenticación', () =>
 
     it('Autenticación Valida', () => {
         let user = (Cypress.env('users') || []).find((user: any) => user.role === "admin");
-        console.log(user)
-
         loginPage.login(user.username, user.password);
-        cy.url().should('include', '/dhis-web-dashboard/#/');
+        cy.url().should('include', '/dhis-web-tracker-capture/#/');
     })
 
     it('Autenticación No valida Valida', () => {
